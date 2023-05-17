@@ -1,9 +1,12 @@
-import db from "./db";
-import User from "./User";
+import Artist from "./models/Artist";
+import Album from "./models/Album";
+import Song from "./models/Song";
+//import User from "./User";
 
-const data = {
-  User,
-  db,
-};
+Artist.hasMany(Album);
+Album.belongsTo(Artist);
 
-export default data;
+Album.hasMany(Song);
+Song.belongsTo(Album);
+
+export { Artist, Album, Song };
