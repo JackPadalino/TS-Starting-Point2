@@ -8,6 +8,14 @@ const router: Express = express();
 // Set up middleware
 router.use(morgan("tiny"));
 router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+// Consider setting this ^ to true for React forms?
+// The extended: false option specifies how the values
+// are parsed.When set to false, the querystring library
+// is used to parse the data, and the resulting parsed
+// object does not support nested objects.If extended
+// were set to true, the qs library would be used instead,
+// which supports nested objects.
 
 // Set up routes
 router.use("/api", apiRouter);
