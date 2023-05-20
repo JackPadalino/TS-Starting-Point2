@@ -59,24 +59,12 @@ const seed = async () => {
       songs.map((song) => Song.create(song))
     );
 
-    //@ts-ignore
     filterHeadz.addAlbums(filterHeadzAlbum);
-    //@ts-ignore
     filterHeadzAlbum.addSongs(quantumSong);
-    //@ts-ignore
     anthonyParasole.addAlbums(parasoleAlbum);
-    //@ts-ignore
     parasoleAlbum.addSongs(headrushSong);
-    //@ts-ignore
     jastice.addAlbums(jasticeAlbum);
-    //@ts-ignore
     jasticeAlbum.addSongs(goWithTheFlowSong);
-
-    // const prototypeMethods = Object.getOwnPropertyNames(
-    //   Object.getPrototypeOf(filterHeadz)
-    // );
-
-    // console.log(prototypeMethods);
   } catch (err) {
     console.log(err);
   }
