@@ -9,10 +9,10 @@ import {
 
 const { STRING, INTEGER, ENUM, UUID, UUIDV4 } = Sequelize;
 
-interface SongModel
+export interface SongModelAttributes
   extends Model<
-    InferAttributes<SongModel>,
-    InferCreationAttributes<SongModel>
+    InferAttributes<SongModelAttributes>,
+    InferCreationAttributes<SongModelAttributes>
   > {
   //id: CreationOptional<number>;
   title: string;
@@ -20,7 +20,7 @@ interface SongModel
   key: string;
 }
 
-const Song = db.define<SongModel>("song", {
+const Song = db.define<SongModelAttributes>("song", {
   title: {
     type: STRING,
     allowNull: false,

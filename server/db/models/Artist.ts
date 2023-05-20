@@ -7,19 +7,22 @@ import {
   Model,
 } from "sequelize";
 
+import { AlbumModelAttributes } from "./Album";
+
 const { STRING, ENUM, UUID, UUIDV4 } = Sequelize;
 
-interface ArtistModel
+export interface ArtistModelAttributes
   extends Model<
-    InferAttributes<ArtistModel>,
-    InferCreationAttributes<ArtistModel>
+    InferAttributes<ArtistModelAttributes>,
+    InferCreationAttributes<ArtistModelAttributes>
   > {
+  addAlbums(album: AlbumModelAttributes): any;
   //id: CreationOptional<number>;
   name: string;
   genre: string;
 }
 
-const Artist = db.define<ArtistModel>("artist", {
+const Artist = db.define<ArtistModelAttributes>("artist", {
   name: {
     type: STRING,
     allowNull: false,
