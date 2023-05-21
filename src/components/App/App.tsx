@@ -1,46 +1,41 @@
 import React, { useEffect } from "react";
-import Home from "./Home";
-import Login from "./Login";
-import { setUser } from "../store/userSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import { RootState } from "../store";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store";
+import RouterComponent from "../../components/RouterComponent";
+import { setArtists } from "../../store/artistsSlice";
+import { setAlbums } from "../../store/albumSlice";
+import { setSongs } from "../../store/songsSlice";
+//import "./style.css";
 
 const App = () => {
-  const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  //const { user } = useSelector((state) => state.user);
 
-  const loginWithToken = async () => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      const response = await axios.get("/api/auth", {
-        headers: {
-          authorization: token,
-        },
-      });
+  const fetchArtists = async () => {
+    const response = await axios.get("/api/artists");
+    dispatch(setArtists(response.data));
+  };
 
-      dispatch(setUser(response.data));
-    }
+  const fetchAlbums = async () => {
+    const response = await axios.get("/api/albums");
+    dispatch(setAlbums(response.data));
+  };
+
+  const fetchSongs = async () => {
+    const response = await axios.get("/api/songs");
+    dispatch(setSongs(response.data));
   };
 
   useEffect(() => {
-    loginWithToken();
+    fetchArtists();
+    fetchAlbums();
+    fetchSongs();
   }, []);
 
-  if (!user.id) return <Login />;
   return (
-    <div>
-      <h1>Hi, My name is totally Ben!!!!</h1>
-      <h1>My Name is Louis!!</h1>
-      <div>
-        <nav>
-          <Link to="/">Hooooooooome</Link>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
+    <div className="app">
+      <RouterComponent />
     </div>
   );
 };

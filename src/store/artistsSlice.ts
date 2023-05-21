@@ -1,30 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface albumsInitialState {
-  albums: [
+export interface artistsInitialState {
+  artists: [
     {
-      title: string;
+      name: string;
+      genre: string;
     }
   ];
 }
 
-const initialState: albumsInitialState = {
-  albums: [
+const initialState: artistsInitialState = {
+  artists: [
     {
-      title: "Undefined",
+      name: "Undefined",
+      genre: "Undefined",
     },
   ],
 };
 
-export const albumsSlice = createSlice({
-  name: "albums",
+export const artistsSlice = createSlice({
+  name: "artists",
   initialState,
   reducers: {
-    setAlbums: (state, action) => {
-      state.albums = action.payload;
+    setArtists: (state, action) => {
+      state.artists = action.payload;
     },
   },
 });
 
-export const { setAlbums } = albumsSlice.actions;
-export default albumsSlice.reducer;
+export const { setArtists } = artistsSlice.actions;
+export default artistsSlice.reducer;
