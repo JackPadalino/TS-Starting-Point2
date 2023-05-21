@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface artistsInitialState {
   artists: [
     {
+      id: number;
       name: string;
       genre: string;
     }
@@ -12,6 +13,7 @@ export interface artistsInitialState {
 const initialState: artistsInitialState = {
   artists: [
     {
+      id: 0,
       name: "Undefined",
       genre: "Undefined",
     },
