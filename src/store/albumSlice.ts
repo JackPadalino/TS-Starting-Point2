@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface albumsInitialState {
   albums: [
     {
+      id: number;
       title: string;
     }
   ];
@@ -11,6 +12,7 @@ export interface albumsInitialState {
 const initialState: albumsInitialState = {
   albums: [
     {
+      id: 0,
       title: "Undefined",
     },
   ],

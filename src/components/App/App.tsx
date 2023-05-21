@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../store";
+//import { useSelector, useDispatch } from "react-redux";
+//import { RootState, AppDispatch } from "../../store";
+
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import RouterComponent from "../../components/RouterComponent";
 import { setArtists } from "../../store/artistsSlice";
 import { setAlbums } from "../../store/albumSlice";
@@ -9,7 +11,7 @@ import { setSongs } from "../../store/songsSlice";
 //import "./style.css";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   //const { user } = useSelector((state) => state.user);
 
   const fetchArtists = async () => {

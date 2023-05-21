@@ -3,12 +3,13 @@ import path from "path";
 import morgan from "morgan";
 import apiRouter from "./api";
 
-const router: Express = express();
+const app: Express = express();
 
 // Set up middleware
-router.use(morgan("tiny"));
-router.use(express.json());
-router.use(express.urlencoded({ extended: false }));
+app.use(morgan("tiny"));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "static")));
+app.use(express.urlencoded({ extended: false }));
 // Consider setting this ^ to true for React forms?
 // The extended: false option specifies how the values
 // are parsed.When set to false, the querystring library
@@ -18,13 +19,20 @@ router.use(express.urlencoded({ extended: false }));
 // which supports nested objects.
 
 // Set up routes
-router.use("/api", apiRouter);
+app.use("/api", apiRouter);
 
 // Pass back everything else / front-end
-router.use("/dist", express.static(path.join(__dirname, "../dist")));
-router.use("/static", express.static(path.join(__dirname, "../static")));
-router.get("/", (req: Request, res: Response) =>
+app.use("/dist", express.static(path.join(__dirname, "../dist")));
+app.use("/static", express.static(path.join(__dirname, "../static")));
+
+// Set up route for home page
+app.get("/", (req: Request, res: Response) =>
   res.sendFile(path.join(__dirname, "../static/index.html"))
 );
 
-export default router;
+// Handle all other routes with React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../static/index.html"));
+});
+
+export default app;
