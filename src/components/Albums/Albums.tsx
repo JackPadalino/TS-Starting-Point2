@@ -6,7 +6,7 @@ const Albums = () => {
   //return <div></div>;
   return (
     <div>
-      <h1>This is the albums page.</h1>
+      <h1>This is the Albums page.</h1>
       {albums.map((album) => {
         return <p key={album.id}>{album.title}</p>;
       })}
