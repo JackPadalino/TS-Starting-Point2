@@ -36,7 +36,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
+    <div className="component">
       <RouterComponent />
     </div>
   );
